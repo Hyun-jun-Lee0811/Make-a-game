@@ -4,7 +4,7 @@ Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 File Name: Laser.h
 Project: CS230
-Author: Kevin Wright
+Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022/5/24
 -----------------------------------------------------------------*/
 #pragma once

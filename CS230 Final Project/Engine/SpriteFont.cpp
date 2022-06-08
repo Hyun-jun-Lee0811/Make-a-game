@@ -4,7 +4,7 @@ Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 File Name: SpriteFont.cpp
 Project: CS230
-Author: Kevin Wright, Hyunjun Lee
+Author: Kevin Wright, Hyunjun Lee, Geumbi Yeo
 Creation date: 2/15/2021
 -----------------------------------------------------------------*/
 #include "doodle/drawing.hpp"

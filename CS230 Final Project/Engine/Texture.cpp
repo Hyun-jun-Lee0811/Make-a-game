@@ -5,7 +5,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 File Name: Texture.cpp
 Purpose: Wrapper class for doodle::Image
 Project: CS230
-Author: Hyunjun Lee
+Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022/4/16 spring
 -----------------------------------------------------------------*/
 #include <doodle/drawing.hpp>

@@ -4,7 +4,7 @@ Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 File Name: Splash.h
 Project: CS230
-Author: Hynjun Lee
+Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022/4/16 spring
 -----------------------------------------------------------------*/
 #pragma once

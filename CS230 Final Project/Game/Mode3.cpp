@@ -7,6 +7,7 @@ Project: CS230
 Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022/4/16 spring
 -----------------------------------------------------------------*/
+#include "Mode3.h"
 #include "../Engine/Engine.h"
 #include "Screens.h"
 #include "Mode2.h"
@@ -15,10 +16,11 @@ Creation date: 2022/4/16 spring
 #include "Laser.h"
 #include "GameParticles.h"
 #include "EnemyShip.h"
+#include <doodle/doodle.hpp>
 
-Mode2::Mode2() : mainmenu(CS230::InputKey::Keyboard::Escape), Reload(CS230::InputKey::Keyboard::R), camera(camera) {}
+Mode3::Mode3() : mainmenu(CS230::InputKey::Keyboard::Escape), Reload(CS230::InputKey::Keyboard::R), camera(camera) {}
 
-void Mode2::Load()
+void Mode3::Load()
 {
 	gameObjectManager = new CS230::GameObjectManager;
 	AddGSComponent(gameObjectManager);
@@ -43,7 +45,7 @@ void Mode2::Load()
 #endif
 }
 
-void Mode2::Update(double dt)
+void Mode3::Update(double dt)
 {
 #ifdef _DEBUG
 	if (mainmenu.IsKeyReleased() == true)
@@ -65,13 +67,13 @@ void Mode2::Update(double dt)
 	GetGSComponent<Score>()->Update(dt);
 }
 
-void Mode2::Unload()
+void Mode3::Unload()
 {
 	ClearGSComponent();
 	shipPtr = nullptr;
 }
 
-void Mode2::Draw()
+void Mode3::Draw()
 {
 	Engine::GetWindow().Clear(0x000000FF);
 	math::TransformMatrix camaraMatrix = camera.GetMatrix();
