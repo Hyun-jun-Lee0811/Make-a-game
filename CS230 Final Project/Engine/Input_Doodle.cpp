@@ -5,7 +5,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 File Name: Input_Doodle.cpp
 Purpose: Interface between doodle and our engine
 Project: CS230
-Author: Hyunjun Lee
+Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022/4/16
 -----------------------------------------------------------------*/
 #include <doodle/input.hpp>	

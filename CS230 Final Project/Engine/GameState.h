@@ -5,7 +5,7 @@ written consent of DigiPen Institute of Technology is prohibited.
 File Name: GameState.h
 Purpose: Base class for different game states
 Project: CS230
-Author: Hyunjun Lee
+Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022 4/16 spring
 -----------------------------------------------------------------*/
 #pragma once

@@ -15,6 +15,7 @@ Creation date: 2022/4/16 Spring
 #include "Game/Splash.h"
 #include "Game/Mode1.h"
 #include "Game/Mode2.h"
+#include "Game/Mode3.h"
 #include "Game/Screens.h"
 
 int main(void)
@@ -22,17 +23,19 @@ int main(void)
 	try
 	{
 		Engine& engine = Engine::Instance();
-		engine.Init("Week 12 - Hyunjun Lee");
+		engine.Init("CS230 Final Project");
 		engine.AddSpriteFont("Assets/font.png");
 		engine.AddSpriteFont("Assets/font2.png");
 		Splash splash;
 		MainMenu main_menu;
 		Mode1 mode1;
 		Mode2 mode2;
+		Mode3 mode3;
 		engine.GetGameStateManager().AddGameState(splash);
 		engine.GetGameStateManager().AddGameState(main_menu);
 		engine.GetGameStateManager().AddGameState(mode1);
 		engine.GetGameStateManager().AddGameState(mode2);
+		engine.GetGameStateManager().AddGameState(mode3);
 
 		while (engine.HasGameEnded() == false)
 		{

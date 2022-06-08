@@ -4,7 +4,7 @@ Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 File Name: Splash.cpp
 Project: CS230
-Author: Hyunjun Lee
+Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022/4/16 Spring
 -----------------------------------------------------------------*/
 #include "../Engine/Engine.h"

@@ -4,7 +4,7 @@ Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
 File Name: MainMenu.h
 Project: CS230
-Author: Hyunjun Lee
+Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022/5/2 Spring
 -----------------------------------------------------------------*/
 #pragma once
@@ -21,6 +21,7 @@ public:
 	{
 		Mode1,
 		Mode2,
+		Mode3,
 		Quit,
 		Count,
 	};
@@ -52,12 +53,4 @@ private:
 
 	static const unsigned int offColor = 0x404040FF;
 	static const unsigned int onColor = 0xFFFFFFFF;
-
-	//int cs230_project;
-	//int side_scroller;
-	//int space_shooter;
-	//int quit;
-	//CS230::Texture Side_Scroller_texture;
-	//CS230::Texture Space_Shooter_texture;
-	//CS230::Texture Quit_texture;
 };
