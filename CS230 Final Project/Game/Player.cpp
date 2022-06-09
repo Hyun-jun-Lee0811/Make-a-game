@@ -17,7 +17,7 @@ Creation date: 2022/6/9
 Player::Player(math::vec2 startPos) : GameObject(startPos), jumpKey(CS230::InputKey::Keyboard::Up),
 moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyboard::Right), isDead(false), drawPlayer(true), Playertimer(0)
 {
-	AddGOComponent(new CS230::Sprite("Assets/Hero.spt", this));
+	AddGOComponent(new CS230::Sprite("Assets/Player.spt", this));
 	currState = &stateIdle;
 	currState->Enter(this);
 	standingOnObject = this;
