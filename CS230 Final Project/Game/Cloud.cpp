@@ -19,11 +19,5 @@ Cloud::Cloud(math::vec2 pos, int size) : GameObject(pos)
 	case 2:
 		AddGOComponent(new CS230::Sprite("Assets/Cloud2.spt", this));
 		break;
-	case 3:
-		AddGOComponent(new CS230::Sprite("Assets/Cloud3.spt", this));
-		break;
-	case 5:
-		AddGOComponent(new CS230::Sprite("Assets/Cloud4.spt", this));
-		break;
 	}
 }

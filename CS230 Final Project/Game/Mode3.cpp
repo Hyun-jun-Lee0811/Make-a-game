@@ -7,11 +7,6 @@ Project: CS230
 Author: Hyunjun Lee, Geumbi Yeo
 Creation date: 2022/4/16 spring
 -----------------------------------------------------------------*/
-#include "Mode2.h"
-#include "Laser.h"
-#include "EnemyShip.h"
-
-//mode3
 #include "Mode3.h"
 #include "../Engine/Engine.h"
 #include "Screens.h"
@@ -24,6 +19,7 @@ Creation date: 2022/4/16 spring
 #include "Exit.h"
 
 #include <doodle/doodle.hpp>
+
 Mode3::Mode3() : mainmenu(CS230::InputKey::Keyboard::Escape), Reload(CS230::InputKey::Keyboard::R),
 back(nullptr), gameObjectManager(nullptr), playerPtr(nullptr), lives(5) {}
 
@@ -33,14 +29,16 @@ void Mode3::Load()
 	AddGSComponent(cameraPtr);
 	AddGSComponent(new Background());
 	back = GetGSComponent<Background>();
+	//back->Add("");
+
 
 	cameraPtr->SetExtent({ { 0,0 }, { back->Size() - Engine::GetWindow().GetSize() } });
-	playerPtr = new Player({ 100, Mode3::floor });
+	playerPtr = new Player({ 100, Mode3::first_cloud });
 	gameObjectManager = new CS230::GameObjectManager;
 	AddGSComponent(gameObjectManager);
 	//gameObjectManager->Add(new Cloud({ 300, Mode3::floor }, 3));
 
-	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::floor)}, {5760, 683} }));
+	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::first_cloud)}, {5760, 683} }));
 	gameObjectManager->Add(playerPtr);
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 
@@ -51,7 +49,7 @@ void Mode3::Load()
 	livesTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font1)).DrawTextToTexture(livesString, 0xFFFFFFFF, true);
 
 	AddGSComponent(new Score(0, Fonts::Font1));
-	AddGSComponent(new Timer(60));
+	AddGSComponent(new Timer(40));
 	AddGSComponent(new Gravity(1875));
 #ifdef _DEBUG
 	AddGSComponent(new ShowCollision(CS230::InputKey::Keyboard::Tilde));
