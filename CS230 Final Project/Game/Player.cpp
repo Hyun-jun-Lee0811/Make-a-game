@@ -47,6 +47,11 @@ void Player::Update(double dt)
 			Playertimer = 0;
 		}
 	}
+	//if (moveLeftKey.IsKeyDown() == true || moveRightKey.IsKeyDown() == true)
+	//{
+	//	Player* player = static_cast<Player*>(objectD);
+	//	player->ChangeState(&player->stateFalling);
+	//}
 }
 
 void Player::Draw(math::TransformMatrix displayMatrix)

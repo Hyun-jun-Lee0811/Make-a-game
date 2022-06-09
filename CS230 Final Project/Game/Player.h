@@ -46,7 +46,7 @@ private:
 	CS230::InputKey jumpKey;
 	CS230::InputKey moveLeftKey;
 	CS230::InputKey moveRightKey;
-
+	GameObject* objectD;
 
 	static constexpr double hurtTime = 2;
 	double Playertimer;
