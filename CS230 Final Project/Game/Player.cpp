@@ -89,6 +89,16 @@ void Player::ResolveCollision(GameObject* objectB)
 				return;
 			}
 		}
+		if (currState == &stateJumping)
+		{
+			if (playerRect.Top() < collideRect.Bottom() && objectB->DoesCollideWith(GetPosition()))
+			{
+				SetPosition({  collideRect.Bottom() });
+				//standingOnObject = objectB;
+				currState->TestForExit(this);
+				return;
+			}
+		}
 		if (GetPosition().x > objectB->GetPosition().x)
 		{
 			SetPosition(math::vec2{ collideRect.Right() + playerRect.Size().x / 2,GetPosition().y });

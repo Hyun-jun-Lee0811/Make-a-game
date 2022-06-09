@@ -36,7 +36,7 @@ void Mode3::Load()
 	playerPtr = new Player({ 100, Mode3::cloud_floor });
 	gameObjectManager = new CS230::GameObjectManager;
 	gameObjectManager->Add(playerPtr);
-	gameObjectManager->Add(new Cloud({ 300, 300 }, 2));
+	gameObjectManager->Add(new Cloud({ 80, Mode3::cloud_floor -110 }, 2));
 	gameObjectManager->Add(new Cloud({ 3000, 300 }, 2));
 	gameObjectManager->Add(new Cloud({ 600, 300 }, 1));
 	AddGSComponent(gameObjectManager);
