@@ -13,6 +13,7 @@ Creation date: 2022/5/23
 #include "../Engine/Engine.h"
 #include "Screens.h"
 #include "Hero.h"
+#include "Player.h"
 
 Exit::Exit(math::irect2 rect) : GameObject(static_cast<math::vec2>(rect.point1))
 {
@@ -22,6 +23,10 @@ Exit::Exit(math::irect2 rect) : GameObject(static_cast<math::vec2>(rect.point1))
 void Exit::ResolveCollision(GameObject* objectA)
 {
 	if (objectA->GetObjectType() == GameObjectType::Hero)
+	{
+		Engine::GetGameStateManager().SetNextState(static_cast<int>(Screens::MainMenu));
+	}
+	if (objectA->GetObjectType() == GameObjectType::Player)
 	{
 		Engine::GetGameStateManager().SetNextState(static_cast<int>(Screens::MainMenu));
 	}

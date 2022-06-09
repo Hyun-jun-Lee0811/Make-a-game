@@ -23,7 +23,16 @@ moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyb
 
 void Player::Update(double dt)
 {
-
+	if (Playertimer != 0)
+	{
+		drawPlayer = !drawPlayer;
+		Playertimer -= dt;
+		if (Playertimer < 0)
+		{
+			drawPlayer = true;
+			Playertimer = 0;
+		}
+	}
 }
 
 void Player::Draw(math::TransformMatrix displayMatrix)

@@ -14,7 +14,10 @@ Creation date: 2022/6/9
 #include "../Engine/GameObjectManager.h"
 #include "Meteor.h"
 #include "..\Engine\Camera.h"
-#include "Score.h"
+
+#include "Cloud.h"
+#include "Player.h"
+#include "Background.h"
 
 class Mode3 : public CS230::GameState
 {
@@ -27,12 +30,18 @@ public:
 
 	std::string GetName() override { return "Mode3"; }
 private:
+	static constexpr double floor = 126.0f;
+	Background* back;
+
 	CS230::InputKey mainmenu;
 	CS230::InputKey Reload;
-	CS230::Camera camera;
 	CS230::GameObjectManager* gameObjectManager;
+	CS230::Texture livesTexture;
 
-	Ship* shipPtr;
+	Player* playerPtr;
+	int lives;
+
+	//Haven't decided to use it yet
 	CS230::Texture GameOverTexture;
 	CS230::Texture RestartTexture;
 };
