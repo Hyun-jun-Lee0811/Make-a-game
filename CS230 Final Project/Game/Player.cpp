@@ -11,6 +11,8 @@ Creation date: 2022/6/9
 #include "../Engine/Engine.h"
 #include "Gravity.h"
 #include "Player_Anims.h"
+#include "../Engine/Collision.h"
+#include "../Engine/Camera.h"
 
 Player::Player(math::vec2 startPos) : GameObject(startPos), jumpKey(CS230::InputKey::Keyboard::Up),
 moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyboard::Right), isDead(false), drawPlayer(true), Playertimer(0)
@@ -23,6 +25,18 @@ moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyb
 
 void Player::Update(double dt)
 {
+	GameObject::Update(dt);
+	if (GetPosition().x <= (GetGOComponent<CS230::RectCollision>()->GetWorldCoorRect().Size().x / 2))
+	{
+		SetPosition(math::vec2{ GetGOComponent<CS230::RectCollision>()->GetWorldCoorRect().Size().x / 2 ,GetPosition().y });
+		SetVelocity({ 0,GetVelocity().y });
+	}
+	else if (GetPosition().x + GetGOComponent<CS230::RectCollision>()->GetWorldCoorRect().Size().x / 2 >= Engine::GetGSComponent<CS230::Camera>()->GetPosition().x + Engine::GetWindow().GetSize().x)
+	{
+		SetPosition({ Engine::GetGSComponent<CS230::Camera>()->GetPosition().x + Engine::GetWindow().GetSize().x - GetGOComponent<CS230::Sprite>()->GetFrameSize().x / 2,GetPosition().y });
+		SetVelocity({ 0,GetVelocity().y });
+	}
+
 	if (Playertimer != 0)
 	{
 		drawPlayer = !drawPlayer;
@@ -59,6 +73,24 @@ bool Player::CanCollideWith(GameObjectType gameobjecttypeB)
 
 void Player::ResolveCollision(GameObject* objectB)
 {
+	math::rect2 collideRect = objectB->GetGOComponent<CS230::RectCollision>()->GetWorldCoorRect();
+	math::rect2 playerRect = GetGOComponent<CS230::RectCollision>()->GetWorldCoorRect();
+
+	switch (objectB->GetObjectType())
+	{
+	case GameObjectType::Cloud:
+		if (GetPosition().x > objectB->GetPosition().x)
+		{
+			SetPosition(math::vec2{ collideRect.Right() + playerRect.Size().x / 2,GetPosition().y });
+			SetVelocity(math::vec2{ 0,GetVelocity().y });
+		}
+		else
+		{
+			SetPosition(math::vec2{ collideRect.Left() - playerRect.Size().x / 2 ,GetPosition().y });
+			SetVelocity(math::vec2{ 0,GetVelocity().y });
+		}
+		break;
+	}
 }
 
 void Player::UpdateXVelocity(double dt)
