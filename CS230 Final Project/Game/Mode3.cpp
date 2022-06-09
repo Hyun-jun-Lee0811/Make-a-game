@@ -17,6 +17,7 @@ Creation date: 2022/4/16 spring
 #include "Score.h"
 #include "Gravity.h"
 #include "Exit.h"
+#include "Bird.h"
 
 #include <doodle/doodle.hpp>
 
@@ -34,12 +35,16 @@ void Mode3::Load()
 	cameraPtr->SetExtent({ { 0,0 }, { back->Size() - Engine::GetWindow().GetSize() } });
 	playerPtr = new Player({ 100, Mode3::cloud_floor });
 	gameObjectManager = new CS230::GameObjectManager;
-	AddGSComponent(gameObjectManager);
-	gameObjectManager->Add(new Cloud({ 300, 500 }, 2));
-	gameObjectManager->Add(new Cloud({ 600, 500 }, 1));
-
-	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::cloud_floor)}, {5760, 683} }));
 	gameObjectManager->Add(playerPtr);
+	gameObjectManager->Add(new Cloud({ 300, 300 }, 2));
+	gameObjectManager->Add(new Cloud({ 3000, 300 }, 2));
+	gameObjectManager->Add(new Cloud({ 600, 300 }, 1));
+	AddGSComponent(gameObjectManager);
+	//gameObjectManager->Add(new Bird({ 1000, cloud_floor }, { 674, 1132 }, playerPtr));
+	//gameObjectManager->Add(new Bird({ 2000, cloud_floor }, { 1635, 2135 }, playerPtr));
+	//gameObjectManager->Add(new Bird({ 3200, cloud_floor }, { 2860, 4250 }, playerPtr));
+	//gameObjectManager->Add(new Bird({ 3800, cloud_floor }, { 2860, 4250 }, playerPtr));
+	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::cloud_floor)}, {5760, 683} }));
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 
 	GameOverTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Game Over", 0xFFFFFFFF, true);
@@ -85,6 +90,7 @@ void Mode3::Update(double dt)
 		lives -= 1;
 		if (lives <= 0)
 		{
+
 			lives = 5;
 			Engine::GetGameStateManager().SetNextState(static_cast<int>(Screens::MainMenu));
 		}

@@ -17,7 +17,7 @@ Creation date: 2022/6/9
 Player::Player(math::vec2 startPos) : GameObject(startPos), jumpKey(CS230::InputKey::Keyboard::Up),
 moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyboard::Right), isDead(false), drawPlayer(true), Playertimer(0)
 {
-	//AddGOComponent(new CS230::Sprite("Assets/Player.spt", this));
+	AddGOComponent(new CS230::Sprite("Assets/Hero.spt", this));
 	currState = &stateIdle;
 	currState->Enter(this);
 	standingOnObject = this;
@@ -79,14 +79,24 @@ void Player::ResolveCollision(GameObject* objectB)
 	switch (objectB->GetObjectType())
 	{
 	case GameObjectType::Cloud:
+		if (currState == &stateFalling)
+		{
+			if (playerRect.Top() > collideRect.Top() && objectB->DoesCollideWith(GetPosition()))
+			{
+				SetPosition({ GetPosition().x, collideRect.Top() });
+				standingOnObject = objectB;
+				currState->TestForExit(this);
+				return;
+			}
+		}
 		if (GetPosition().x > objectB->GetPosition().x)
 		{
 			SetPosition(math::vec2{ collideRect.Right() + playerRect.Size().x / 2,GetPosition().y });
 			SetVelocity(math::vec2{ 0,GetVelocity().y });
 		}
-		else
+		if (GetPosition().x < objectB->GetPosition().x)
 		{
-			SetPosition(math::vec2{ collideRect.Left() - playerRect.Size().x / 2 ,GetPosition().y });
+			SetPosition(math::vec2{ collideRect.Left() - playerRect.Size().x / 2,GetPosition().y });
 			SetVelocity(math::vec2{ 0,GetVelocity().y });
 		}
 		break;

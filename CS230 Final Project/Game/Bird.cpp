@@ -16,7 +16,7 @@ Creation date: 2022/6/9
 
 Bird::Bird(math::vec2 pos, std::vector<double> patrolNodes, Player* playerPtr) : GameObject(pos), patrolNodes(patrolNodes), playerPtr(playerPtr), currPatrolNode(0)
 {
-	//AddGOComponent(new CS230::Sprite("Assets/Bird.spt", this));
+	AddGOComponent(new CS230::Sprite("Assets/Bird.spt", this));
 	GetGOComponent<CS230::Sprite>()->PlayAnimation(static_cast<int>(Bird_Anim::Fly_Anim));
 	currState = &statePatrol;
 	currState->Enter(this);
