@@ -14,10 +14,10 @@ Cloud::Cloud(math::vec2 pos, int size) : GameObject(pos)
 	switch (size)
 	{
 	case 1:
-		AddGOComponent(new CS230::Sprite("Assets/Cloud1.spt", this));
+		AddGOComponent(new CS230::Sprite("Assets/Mode3_cloud.spt", this));
 		break;
 	case 2:
-		AddGOComponent(new CS230::Sprite("Assets/Cloud2.spt", this));
+		AddGOComponent(new CS230::Sprite("Assets/Mode3_cloud2.spt", this));
 		break;
 	}
 }

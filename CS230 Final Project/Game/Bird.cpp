@@ -26,7 +26,7 @@ void Bird::ResolveCollision(GameObject* objectC)
 {
 	if (objectC->GetObjectType() == GameObjectType::Player)
 	{
-		Engine::GetGSComponent<Score>()->AddScore(100);
+		Engine::GetGSComponent<Score>()->AddScore(50);
 		ChangeState(&stateDead);
 	}
 }

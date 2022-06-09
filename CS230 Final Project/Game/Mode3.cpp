@@ -29,16 +29,16 @@ void Mode3::Load()
 	AddGSComponent(cameraPtr);
 	AddGSComponent(new Background());
 	back = GetGSComponent<Background>();
-	//back->Add("");
-
+	back->Add("Assets/Mode3_background.png", 1);
 
 	cameraPtr->SetExtent({ { 0,0 }, { back->Size() - Engine::GetWindow().GetSize() } });
-	playerPtr = new Player({ 100, Mode3::first_cloud });
+	playerPtr = new Player({ 100, Mode3::cloud_floor });
 	gameObjectManager = new CS230::GameObjectManager;
 	AddGSComponent(gameObjectManager);
-	//gameObjectManager->Add(new Cloud({ 300, Mode3::floor }, 3));
+	gameObjectManager->Add(new Cloud({ 300, 500 }, 2));
+	gameObjectManager->Add(new Cloud({ 600, 500 }, 1));
 
-	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::first_cloud)}, {5760, 683} }));
+	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::cloud_floor)}, {5760, 683} }));
 	gameObjectManager->Add(playerPtr);
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 
