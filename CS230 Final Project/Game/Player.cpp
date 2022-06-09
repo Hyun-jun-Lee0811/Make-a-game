@@ -324,7 +324,7 @@ void Player::State_Falling::TestForExit(GameObject* object)
 		}
 		player->GameObject::SetVelocity({ player->GameObject::GetVelocity().x , 0 });
 	}
-	if (player->GetPosition().y < -300)
+	if (player->GetPosition().y < -280)
 	{
 		player->isDead = true;
 	}

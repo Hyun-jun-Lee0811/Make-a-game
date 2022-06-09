@@ -39,6 +39,7 @@
     <ClCompile Include="..\Engine\Window.cpp" />
     <ClCompile Include="..\Game\Background.cpp" />
     <ClCompile Include="..\Game\Ball.cpp" />
+    <ClCompile Include="..\Game\Bird.cpp" />
     <ClCompile Include="..\Game\Bunny.cpp" />
     <ClCompile Include="..\Game\Cloud.cpp" />
     <ClCompile Include="..\Game\EnemyShip.cpp" />
@@ -87,6 +88,8 @@
     <ClInclude Include="..\Game\Background.h" />
     <ClInclude Include="..\Game\Ball.h" />
     <ClInclude Include="..\Game\Ball_Anims.h" />
+    <ClInclude Include="..\Game\Bird.h" />
+    <ClInclude Include="..\Game\Bird_Anim.h" />
     <ClInclude Include="..\Game\Bunny.h" />
     <ClInclude Include="..\Game\Bunny_Anim.h" />
     <ClInclude Include="..\Game\Cloud.h" />

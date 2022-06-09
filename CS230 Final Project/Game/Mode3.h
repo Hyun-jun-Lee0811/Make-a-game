@@ -30,7 +30,7 @@ public:
 
 	std::string GetName() override { return "Mode3"; }
 private:
-	static constexpr double floor = 126.0f;
+	static constexpr double first_cloud = 126.0f;
 	Background* back;
 
 	CS230::InputKey mainmenu;
