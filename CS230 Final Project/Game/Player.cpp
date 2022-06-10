@@ -14,6 +14,7 @@ Creation date: 2022/6/9
 #include "../Engine/Collision.h"
 #include "../Engine/Camera.h"
 #include "GameParticles.h"
+#include "LightningCloud.h"
 
 Player::Player(math::vec2 startPos) : GameObject(startPos), jumpKey(CS230::InputKey::Keyboard::Up),
 moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyboard::Right), isDead(false), drawPlayer(true), Playertimer(0), standingOnObject(nullptr)
@@ -132,6 +133,31 @@ void Player::ResolveCollision(GameObject* objectB)
 					Engine::GetGameStateManager().GetGSComponent<SmokeEmitter>()->Emit(1, math::vec2{ (collideRect.Left() + playerRect.Right()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
 					, { 0, 0 }, { 0,0 }, 0);
 				}
+				return;
+			}
+		}
+		if (GetPosition().x > objectB->GetPosition().x)
+		{
+			SetVelocity(math::vec2{ maxXVelocity / 2 ,jumpVelocity / 2 });
+			currState = &stateFalling;
+			SetPosition(math::vec2{ GetPosition().x + (collideRect.Right() - playerRect.Left()),GetPosition().y });
+			Playertimer = hurtTime;
+		}
+		if (GetPosition().x < objectB->GetPosition().x)
+		{
+			SetVelocity(math::vec2{ -maxXVelocity / 2,jumpVelocity } / 2);
+			currState = &stateFalling;
+			SetPosition(math::vec2{ GetPosition().x - (playerRect.Right() - collideRect.Left()),GetPosition().y });
+			Playertimer = hurtTime;
+		}
+		break;
+	case GameObjectType::LightningCloud:
+
+		if (currState == &stateFalling)
+		{
+			if (collideRect.Bottom() < GetPosition().y)
+			{
+				SetVelocity({ GetVelocity().x, jumpVelocity + 100 });
 				return;
 			}
 		}

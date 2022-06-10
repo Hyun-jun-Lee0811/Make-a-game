@@ -2,29 +2,27 @@
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
-File Name: GameObjectTypes.h
+File Name: LightningCloud.h
 Project: CS230
 Author: Hyunjun Lee, Geumbi Yeo
-Creation date: 2022/5/16
+Creation date: 2022/6/11
 -----------------------------------------------------------------*/
 #pragma once
+#include "../Engine/GameObject.h"
+#include "GameObjectTypes.h"
 
-enum class GameObjectType
+class LightningCloud : public CS230::GameObject
 {
-	Hero,
-	Bunny,
-	Ball,
-	TreeStump,
-	Meteor,
-	Ship,
-	Floor,
-	Trigger,
-	Laser,
-	Count,
-	Particle,
-	EnemyShip,
-	Player,
-	Cloud,
-	Bird,
-	LightningCloud,
+public:
+	LightningCloud(math::vec2 startPos);
+	GameObjectType GetObjectType() override
+	{
+		return GameObjectType::LightningCloud;
+	}
+	std::string GetObjectTypeName() override
+	{
+		return "LightningCloud";
+	}
+
+private:
 };

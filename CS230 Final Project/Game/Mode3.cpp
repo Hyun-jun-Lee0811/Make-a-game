@@ -18,6 +18,7 @@ Creation date: 2022/4/16 spring
 #include "Gravity.h"
 #include "Exit.h"
 #include "Bird.h"
+#include "LightningCloud.h"
 
 #include <doodle/doodle.hpp>
 
@@ -42,13 +43,15 @@ void Mode3::Load()
 
 	gameObjectManager->Add(new Cloud({ 60, Mode3::cloud_floor - 110 }, 3)); //1
 	gameObjectManager->Add(new Cloud({ 180, Mode3::cloud_floor - 110 }, 2)); //2
-	gameObjectManager->Add(new Cloud({ 340, Mode3::cloud_floor - 110 }, 4)); //3
-	gameObjectManager->Add(new Cloud({ 580, Mode3::cloud_floor - 45 }, 4)); //4
+	gameObjectManager->Add(new Cloud({ 340, Mode3::cloud_floor - 110 }, 3)); //3
+	gameObjectManager->Add(new Cloud({ 580, Mode3::cloud_floor - 45 }, 3)); //4
 	gameObjectManager->Add(new Cloud({ 820, 500 }, 1)); //5
+	gameObjectManager->Add(new Cloud({ 1500, Mode3::cloud_floor - 110 }, 3)); //6
+	gameObjectManager->Add(new Cloud({ 1750, Mode3::cloud_floor - 110 }, 3)); //7
+	gameObjectManager->Add(new LightningCloud({ 2000,Mode3::cloud_floor - 110 }));//8
+	gameObjectManager->Add(new Cloud({ 2350, Mode3::cloud_floor + 100 }, 1)); //9
 
-	//gameObjectManager->Add(new Bird({ 2000, cloud_floor }, { 1635, 2135 }, playerPtr));
-	//gameObjectManager->Add(new Bird({ 3200, cloud_floor }, { 2860, 4250 }, playerPtr));
-	//gameObjectManager->Add(new Bird({ 3800, cloud_floor }, { 2860, 4250 }, playerPtr));
+
 	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::cloud_floor)}, {5760, 683} }));
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 

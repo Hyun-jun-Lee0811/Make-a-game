@@ -18,7 +18,7 @@ Score::Score(int startingScore, Fonts fontToUse) : fontToUse(fontToUse), score(s
 
 void Score::AddScore(int newPoints)
 {
-	score += newPoints;
+	newPoints += score;
 }
 
 void Score::Draw(math::ivec2 location)
