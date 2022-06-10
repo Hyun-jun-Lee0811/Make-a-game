@@ -16,8 +16,9 @@ Score::Score(int startingScore, Fonts fontToUse) : fontToUse(fontToUse), score(s
 	RenderText();
 }
 
-void Score::AddScore(int)
+void Score::AddScore(int newPoints)
 {
+	score += newPoints;
 }
 
 void Score::Draw(math::ivec2 location)

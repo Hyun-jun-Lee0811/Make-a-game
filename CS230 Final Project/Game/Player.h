@@ -39,14 +39,13 @@ public:
 private:
 	math::vec2 startPos;
 
-	static constexpr double jumpVelocity = 1200;
+	static constexpr double jumpVelocity = 950;
 	static constexpr double xAccel = 500;
 	static constexpr double xDrag = 750;
 	static constexpr double maxXVelocity = 750;
 	CS230::InputKey jumpKey;
 	CS230::InputKey moveLeftKey;
 	CS230::InputKey moveRightKey;
-	GameObject* objectD;
 
 	static constexpr double hurtTime = 2;
 	double Playertimer;

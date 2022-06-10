@@ -31,7 +31,8 @@ namespace CS230
 		}
 
 		template<typename T>
-		T* GetComponent() {
+		T* GetComponent()
+		{
 			for (Component* component : components)
 			{
 				T* ptr = dynamic_cast<T*>(component);

@@ -31,7 +31,7 @@ void Bird::ResolveCollision(GameObject* objectC)
 	}
 }
 
-void Bird::State_Attack::Enter(GameObject* object)
+void Bird::Bird_State_Attack::Enter(GameObject* object)
 {
 	Bird* bird = static_cast<Bird*>(object);
 	bird->GetGOComponent<CS230::Sprite>()->PlayAnimation(static_cast<int>(Bird_Anim::Attack_Anim));
@@ -48,7 +48,7 @@ void Bird::State_Attack::Enter(GameObject* object)
 	}
 }
 
-void Bird::State_Attack::Update(GameObject* object, double)
+void Bird::Bird_State_Attack::Update(GameObject* object, double)
 {
 	Bird* bird = static_cast<Bird*>(object);
 
@@ -67,9 +67,9 @@ void Bird::State_Attack::Update(GameObject* object, double)
 	}
 }
 
-void Bird::State_Attack::TestForExit(GameObject*) {}
+void Bird::Bird_State_Attack::TestForExit(GameObject*) {}
 
-void Bird::State_Dead::Enter(GameObject* object)
+void Bird::Bird_State_Dead::Enter(GameObject* object)
 {
 	Bird* bird = static_cast<Bird*>(object);
 	bird->RemoveGOComponent<CS230::Collision>();
@@ -78,11 +78,11 @@ void Bird::State_Dead::Enter(GameObject* object)
 	Engine::GetGSComponent<Score>()->AddScore(100);
 }
 
-void Bird::State_Dead::Update(GameObject*, double) {}
+void Bird::Bird_State_Dead::Update(GameObject*, double) {}
 
-void Bird::State_Dead::TestForExit(GameObject*) {}
+void Bird::Bird_State_Dead::TestForExit(GameObject*) {}
 
-void Bird::State_Patrol::Enter(GameObject* object)
+void Bird::Bird_State_Patrol::Enter(GameObject* object)
 {
 	Bird* bird = static_cast<Bird*>(object);
 	bird->GetGOComponent<CS230::Sprite>()->PlayAnimation(static_cast<int>(Bird_Anim::Fly_Anim));
@@ -98,7 +98,7 @@ void Bird::State_Patrol::Enter(GameObject* object)
 	}
 }
 
-void Bird::State_Patrol::Update(GameObject* object, double)
+void Bird::Bird_State_Patrol::Update(GameObject* object, double)
 {
 	Bird* bird = static_cast<Bird*>(object);
 	if (bird->GetPosition().x >= bird->patrolNodes[bird->currPatrolNode] && bird->GetVelocity().x >= 0 || bird->GetPosition().x <= bird->patrolNodes[bird->currPatrolNode] && bird->GetVelocity().x <= 0)
@@ -115,7 +115,7 @@ void Bird::State_Patrol::Update(GameObject* object, double)
 	}
 }
 
-void Bird::State_Patrol::TestForExit(GameObject* object)
+void Bird::Bird_State_Patrol::TestForExit(GameObject* object)
 {
 	Bird* bird = static_cast<Bird*>(object);
 	if (bird->GetPosition().y == bird->playerPtr->GetPosition().y)

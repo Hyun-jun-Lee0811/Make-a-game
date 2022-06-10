@@ -27,7 +27,7 @@ public:
 
 	void ResolveCollision(GameObject* objectC) override;
 private:
-	class State_Patrol : public State
+	class Bird_State_Patrol : public State
 	{
 	public:
 		void Enter(GameObject* object) override;
@@ -35,7 +35,7 @@ private:
 		void TestForExit(GameObject* object) override;
 		std::string GetName() override { return "bounce"; }
 	};
-	class State_Attack : public State
+	class Bird_State_Attack : public State
 	{
 	public:
 		void Enter(GameObject* object) override;
@@ -43,7 +43,7 @@ private:
 		void TestForExit(GameObject* object) override;
 		std::string GetName() override { return "attack"; }
 	};
-	class State_Dead : public State
+	class Bird_State_Dead : public State
 	{
 	public:
 		void Enter(GameObject* object) override;
@@ -51,9 +51,9 @@ private:
 		void TestForExit(GameObject* object) override;
 		std::string GetName() override { return "land"; }
 	};
-	State_Patrol statePatrol;
-	State_Attack stateAttack;
-	State_Dead stateDead;
+	Bird_State_Patrol statePatrol;
+	Bird_State_Attack stateAttack;
+	Bird_State_Dead stateDead;
 	Player* playerPtr;
 
 	std::vector<double> patrolNodes;

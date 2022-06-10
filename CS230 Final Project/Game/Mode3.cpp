@@ -32,15 +32,20 @@ void Mode3::Load()
 	back = GetGSComponent<Background>();
 	back->Add("Assets/Mode3_background.png", 1);
 
+
 	cameraPtr->SetExtent({ { 0,0 }, { back->Size() - Engine::GetWindow().GetSize() } });
-	playerPtr = new Player({ 100, Mode3::cloud_floor });
+	playerPtr = new Player({ 200, Mode3::cloud_floor });
 	gameObjectManager = new CS230::GameObjectManager;
-	gameObjectManager->Add(playerPtr);
-	gameObjectManager->Add(new Cloud({ 80, Mode3::cloud_floor -110 }, 2));
-	gameObjectManager->Add(new Cloud({ 3000, 300 }, 2));
-	gameObjectManager->Add(new Cloud({ 600, 300 }, 1));
 	AddGSComponent(gameObjectManager);
-	//gameObjectManager->Add(new Bird({ 1000, cloud_floor }, { 674, 1132 }, playerPtr));
+	gameObjectManager->Add(new Bird({ 920, 600 }, { 1020, 1130 }, playerPtr));
+	gameObjectManager->Add(playerPtr);
+
+	gameObjectManager->Add(new Cloud({ 60, Mode3::cloud_floor - 110 }, 3)); //1
+	gameObjectManager->Add(new Cloud({ 180, Mode3::cloud_floor - 110 }, 2)); //2
+	gameObjectManager->Add(new Cloud({ 340, Mode3::cloud_floor - 110 }, 4)); //3
+	gameObjectManager->Add(new Cloud({ 580, Mode3::cloud_floor - 45 }, 4)); //4
+	gameObjectManager->Add(new Cloud({ 820, 500 }, 1)); //5
+
 	//gameObjectManager->Add(new Bird({ 2000, cloud_floor }, { 1635, 2135 }, playerPtr));
 	//gameObjectManager->Add(new Bird({ 3200, cloud_floor }, { 2860, 4250 }, playerPtr));
 	//gameObjectManager->Add(new Bird({ 3800, cloud_floor }, { 2860, 4250 }, playerPtr));
@@ -56,6 +61,7 @@ void Mode3::Load()
 	AddGSComponent(new Score(0, Fonts::Font1));
 	AddGSComponent(new Timer(40));
 	AddGSComponent(new Gravity(1875));
+	AddGSComponent(new SmokeEmitter());
 #ifdef _DEBUG
 	AddGSComponent(new ShowCollision(CS230::InputKey::Keyboard::Tilde));
 #endif
@@ -111,7 +117,7 @@ void Mode3::Update(double dt)
 			Engine::GetGameStateManager().ReloadState();
 		}
 	}
-}
+	}
 
 void Mode3::Unload()
 {

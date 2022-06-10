@@ -13,9 +13,10 @@ Creation date: 2022/6/9
 #include "Player_Anims.h"
 #include "../Engine/Collision.h"
 #include "../Engine/Camera.h"
+#include "GameParticles.h"
 
 Player::Player(math::vec2 startPos) : GameObject(startPos), jumpKey(CS230::InputKey::Keyboard::Up),
-moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyboard::Right), isDead(false), drawPlayer(true), Playertimer(0)
+moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyboard::Right), isDead(false), drawPlayer(true), Playertimer(0), standingOnObject(nullptr)
 {
 	AddGOComponent(new CS230::Sprite("Assets/Player.spt", this));
 	currState = &stateIdle;
@@ -94,16 +95,7 @@ void Player::ResolveCollision(GameObject* objectB)
 				return;
 			}
 		}
-		if (currState == &stateJumping)
-		{
-			if (playerRect.Top() < collideRect.Bottom() && objectB->DoesCollideWith(GetPosition()))
-			{
-				SetPosition({  collideRect.Bottom() });
-				//standingOnObject = objectB;
-				currState->TestForExit(this);
-				return;
-			}
-		}
+
 		if (GetPosition().x > objectB->GetPosition().x)
 		{
 			SetPosition(math::vec2{ collideRect.Right() + playerRect.Size().x / 2,GetPosition().y });
@@ -113,6 +105,49 @@ void Player::ResolveCollision(GameObject* objectB)
 		{
 			SetPosition(math::vec2{ collideRect.Left() - playerRect.Size().x / 2,GetPosition().y });
 			SetVelocity(math::vec2{ 0,GetVelocity().y });
+		}
+		break;
+	case GameObjectType::Bird:
+		if (currState == &stateSkidding)
+		{
+			if (GetVelocity().x > collideRect.Left() || GetVelocity().x < collideRect.Right())
+			{
+				objectB->ResolveCollision(this);
+				return;
+			}
+		}
+		if (currState == &stateFalling)
+		{
+			if (GetPosition().y > collideRect.Bottom())
+			{
+				SetVelocity({ GetVelocity().x, jumpVelocity / 2 });
+				objectB->ResolveCollision(this);
+				if (GetVelocity().x < 0)
+				{
+					Engine::GetGameStateManager().GetGSComponent<SmokeEmitter>()->Emit(1, math::vec2{ (collideRect.Right() + playerRect.Left()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
+					, { 0, 0 }, { 0,0 }, 0);
+				}
+				else
+				{
+					Engine::GetGameStateManager().GetGSComponent<SmokeEmitter>()->Emit(1, math::vec2{ (collideRect.Left() + playerRect.Right()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
+					, { 0, 0 }, { 0,0 }, 0);
+				}
+				return;
+			}
+		}
+		if (GetPosition().x > objectB->GetPosition().x)
+		{
+			SetVelocity(math::vec2{ maxXVelocity / 2 ,jumpVelocity / 2 });
+			currState = &stateFalling;
+			SetPosition(math::vec2{ GetPosition().x + (collideRect.Right() - playerRect.Left()),GetPosition().y });
+			Playertimer = hurtTime;
+		}
+		if (GetPosition().x < objectB->GetPosition().x)
+		{
+			SetVelocity(math::vec2{ -maxXVelocity / 2,jumpVelocity } / 2);
+			currState = &stateFalling;
+			SetPosition(math::vec2{ GetPosition().x - (playerRect.Right() - collideRect.Left()),GetPosition().y });
+			Playertimer = hurtTime;
 		}
 		break;
 	}
