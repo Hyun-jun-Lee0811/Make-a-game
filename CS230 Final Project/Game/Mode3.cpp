@@ -61,14 +61,14 @@ void Mode3::Load()
 	gameObjectManager->Add(new LightningCloud({ 4400,Mode3::cloud_floor + 270 }));//15
 	gameObjectManager->Add(new LightningCloud({ 4900,Mode3::cloud_floor + 250 }));//16
 	gameObjectManager->Add(new Cloud({ 4650, Mode3::cloud_floor - 15 }, 2)); //17
-	gameObjectManager->Add(new Cloud({ 5400, 500 }, 1)); //5
+	gameObjectManager->Add(new Cloud({ 5400, 300 }, 1)); //5
 	gameObjectManager->Add(new Cloud({ 5200, Mode3::cloud_floor - 140 }, 3)); //2
 
 	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::cloud_floor)}, {5760, 683} }));
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 
 	GameOverTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Game Over", 0xFFFFFFFF, true);
-	RestartTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Press r to restart", 0xFFFFFFFF, true);
+	MainMenuTextue = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Press escape to MainMenu", 0xFFFFFFFF, true);
 
 	std::string livesString = "Lives: " + std::to_string(lives);
 	livesTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font1)).DrawTextToTexture(livesString, 0xFFFFFFFF, true);
@@ -86,25 +86,31 @@ void Mode3::Update(double dt)
 {
 	GetGSComponent<CS230::Camera>()->Update(playerPtr->GetPosition());
 #ifdef _DEBUG
-	if (mainmenu.IsKeyReleased() == true)
+	if (mainmenu.IsKeyReleased() == true && playerPtr->IsDead() == false)
 	{
 		Engine::GetGameStateManager().SetNextState(static_cast<int>(Screens::MainMenu));
 	}
 	GetGSComponent<ShowCollision>()->Update(dt);
 #else
-	if (Reload.IsKeyReleased() == true && playerPtr->IsDead() == true)
+	if (Reload.IsKeyReleased() == true && playerPtr->IsDead() == false)
 	{
 		Engine::GetGameStateManager().ReloadState();
 	}
 #endif
-	if (Reload.IsKeyReleased() == true)
+	if (Reload.IsKeyReleased() == true && playerPtr->IsDead() == false)
 	{
 		Engine::GetGameStateManager().ReloadState();
 	}
 
 	gameObjectManager->Update(dt);
-	GetGSComponent<Timer>()->Update(dt);
-	GetGSComponent<Score>()->Update(dt);
+	if (lives > 0)
+	{
+		if (playerPtr->IsDead() == false)
+		{
+			GetGSComponent<Timer>()->Update(dt);
+			GetGSComponent<Score>()->Update(dt);
+		}
+	}
 
 	if (GetGSComponent<Timer>()->hasEnded())
 	{
@@ -120,16 +126,17 @@ void Mode3::Update(double dt)
 		}
 	}
 
-	if (playerPtr->IsDead() == true) {
-		lives--;
-		if (lives <= 0)
+	if (playerPtr->IsDead() == true)
+	{
+		lives -= 1;
+		if (lives > 0)
+		{
+			Engine::GetGameStateManager().ReloadState();
+		}
+		else if (mainmenu.IsKeyReleased() == true && lives <= 0)
 		{
 			lives = 5;
 			Engine::GetGameStateManager().SetNextState(static_cast<int>(Screens::MainMenu));
-		}
-		else
-		{
-			Engine::GetGameStateManager().ReloadState();
 		}
 	}
 }
@@ -148,15 +155,24 @@ void Mode3::Draw()
 	math::TransformMatrix cameraMatrix = cameraPtr->GetMatrix();
 	gameObjectManager->DrawAll(cameraMatrix);
 	math::ivec2 winSize = Engine::GetWindow().GetSize();
-	GetGSComponent<Score>()->Draw(math::ivec2{ 10, winSize.y - 90 });
-	livesTexture.Draw(math::TranslateMatrix(math::ivec2{ winSize.x * 2 / 5, winSize.y - livesTexture.GetSize().y - 5 }));
-	GetGSComponent<Timer>()->Draw(math::ivec2{ winSize.x * 3 / 4, winSize.y - 90 });
-
-	if (playerPtr->IsDead() == true)
+	if (lives > 0)
 	{
-		RestartTexture.Draw(math::TranslateMatrix{ math::ivec2
-			{Engine::GetWindow().GetSize().x / 2 - RestartTexture.GetSize().x / 2,winSize.y / 2 - GameOverTexture.GetSize().y } });
-		GameOverTexture.Draw(math::TranslateMatrix{ math::ivec2
-			{Engine::GetWindow().GetSize().x / 2 - GameOverTexture.GetSize().x / 2,winSize.y / 2 } });
+		if (playerPtr->IsDead() == false)
+		{
+			GetGSComponent<Score>()->Draw(math::ivec2{ 10, winSize.y - 90 });
+			livesTexture.Draw(math::TranslateMatrix(math::ivec2{ winSize.x * 2 / 5, winSize.y - livesTexture.GetSize().y - 5 }));
+			GetGSComponent<Timer>()->Draw(math::ivec2{ winSize.x * 3 / 4, winSize.y - 90 });
+		}
+	}
+
+	if (lives <= 0)
+	{
+		if (playerPtr->IsDead() == true)
+		{
+			MainMenuTextue.Draw(math::TranslateMatrix{ math::ivec2
+				{Engine::GetWindow().GetSize().x / 2 - MainMenuTextue.GetSize().x / 2,winSize.y / 2 - GameOverTexture.GetSize().y } });
+			GameOverTexture.Draw(math::TranslateMatrix{ math::ivec2
+				{Engine::GetWindow().GetSize().x / 2 - GameOverTexture.GetSize().x / 2,winSize.y / 2 } });
+		}
 	}
 }

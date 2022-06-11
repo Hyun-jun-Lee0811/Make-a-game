@@ -42,5 +42,5 @@ private:
 
 	//Haven't decided to use it yet
 	CS230::Texture GameOverTexture;
-	CS230::Texture RestartTexture;
+	CS230::Texture MainMenuTextue;
 };
