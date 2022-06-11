@@ -50,6 +50,8 @@ void Mode3::Load()
 	gameObjectManager->Add(new Cloud({ 1750, Mode3::cloud_floor - 110 }, 3)); //7
 	gameObjectManager->Add(new LightningCloud({ 2000,Mode3::cloud_floor - 110 }));//8
 	gameObjectManager->Add(new Cloud({ 2350, Mode3::cloud_floor + 100 }, 1)); //9
+	gameObjectManager->Add(new LightningCloud({ 3000,Mode3::cloud_floor - 110 }));//10
+	gameObjectManager->Add(new LightningCloud({ 3400,Mode3::cloud_floor - 10 }));//11
 
 
 	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::cloud_floor)}, {5760, 683} }));
