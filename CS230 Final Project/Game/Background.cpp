@@ -32,5 +32,12 @@ Background::~Background()
 
 math::ivec2 Background::Size()
 {
-	return math::ivec2(backgrounds.back().texturePtr->GetSize());
+	for (ParallaxInfo& levels : backgrounds)
+	{
+		if (levels.level == 1)
+		{
+			return levels.texturePtr->GetSize();
+		}
+	}
+	return { 0,0 };
 }

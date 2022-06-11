@@ -11,7 +11,7 @@ Creation date: 2022 4/16 spring
 #include "TransformMatrix.h"
 #include "Collision.h"
 
-CS230::Camera::Camera(math::rect2 movableRange) : movableRange(movableRange) {}
+CS230::Camera::Camera(math::rect2 movableRange) : movableRange(movableRange), position(position), extent(extent) {}
 
 void CS230::Camera::SetPosition(math::vec2 newPosition)
 {
