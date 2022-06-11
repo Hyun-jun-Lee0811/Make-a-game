@@ -104,7 +104,6 @@ void Mode3::Update(double dt)
 		lives -= 1;
 		if (lives <= 0)
 		{
-
 			lives = 5;
 			Engine::GetGameStateManager().SetNextState(static_cast<int>(Screens::MainMenu));
 		}
@@ -113,6 +112,7 @@ void Mode3::Update(double dt)
 			Engine::GetGameStateManager().ReloadState();
 		}
 	}
+
 	if (playerPtr->IsDead() == true) {
 		lives--;
 		if (lives <= 0)

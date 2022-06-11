@@ -15,6 +15,7 @@ Creation date: 2022/6/9
 #include "../Engine/Camera.h"
 #include "GameParticles.h"
 #include "LightningCloud.h"
+#include "Score.h"
 
 Player::Player(math::vec2 startPos) : GameObject(startPos), jumpKey(CS230::InputKey::Keyboard::Up),
 moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyboard::Right), isDead(false), drawPlayer(true), Playertimer(0), standingOnObject(nullptr)
