@@ -55,7 +55,13 @@ void Mode3::Load()
 	gameObjectManager->Add(new LightningCloud({ 2800,Mode3::cloud_floor - 110 }));//10
 	gameObjectManager->Add(new LightningCloud({ 3100,Mode3::cloud_floor + 90 }));//11
 	gameObjectManager->Add(new Cloud({ 3400, 550 }, 1)); //12
-
+	gameObjectManager->Add(new Cloud({ 4000, Mode3::cloud_floor - 10 }, 2)); //13
+	gameObjectManager->Add(new Cloud({ 4150, Mode3::cloud_floor + 201 }, 2)); //14
+	gameObjectManager->Add(new LightningCloud({ 4400,Mode3::cloud_floor + 270 }));//15
+	gameObjectManager->Add(new LightningCloud({ 4900,Mode3::cloud_floor + 250 }));//16
+	gameObjectManager->Add(new Cloud({ 4650, Mode3::cloud_floor - 15 }, 2)); //17
+	gameObjectManager->Add(new Cloud({ 5400, 500 }, 1)); //5
+	gameObjectManager->Add(new Cloud({ 5200, Mode3::cloud_floor - 140 }, 3)); //2
 
 	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::cloud_floor)}, {5760, 683} }));
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
