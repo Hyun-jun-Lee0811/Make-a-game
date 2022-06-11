@@ -176,6 +176,8 @@ void Player::ResolveCollision(GameObject* objectB)
 			Playertimer = hurtTime;
 		}
 		break;
+	case GameObjectType::Trigger:
+		objectB->ResolveCollision(this);
 	}
 }
 
