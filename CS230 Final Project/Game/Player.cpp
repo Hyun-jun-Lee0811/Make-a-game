@@ -178,6 +178,7 @@ void Player::ResolveCollision(GameObject* objectB)
 		}
 		break;
 	case GameObjectType::Trigger:
+		SetPosition(math::vec2{ 0,0});
 		objectB->ResolveCollision(this);
 	}
 }

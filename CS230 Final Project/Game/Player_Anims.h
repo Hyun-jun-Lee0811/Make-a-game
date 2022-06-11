@@ -11,6 +11,7 @@ Creation date: 2022/6/9
 
 enum class Player_Anims
 {
+    None_Anim,
     Player_Idle_Anim,
     Player_Run_Anim,
     Player_Jump_Anim,

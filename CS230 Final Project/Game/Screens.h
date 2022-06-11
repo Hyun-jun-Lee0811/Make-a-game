@@ -15,5 +15,6 @@ enum class Screens
 	MainMenu,
 	Mode1,
 	Mode2,
-	Mode3
+	Mode3,
+	Win,
 };

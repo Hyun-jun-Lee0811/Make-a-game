@@ -29,6 +29,6 @@ void Exit::ResolveCollision(GameObject* objectA)
 
 	if (objectA->GetObjectType() == GameObjectType::Player)
 	{
-		Engine::GetGameStateManager().SetNextState(static_cast<int>(Screens::MainMenu));
+		Engine::GetGameStateManager().SetNextState(static_cast<int>(Screens::Win));
 	}
 }

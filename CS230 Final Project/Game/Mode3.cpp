@@ -19,6 +19,7 @@ Creation date: 2022/4/16 spring
 #include "Exit.h"
 #include "Bird.h"
 #include "LightningCloud.h"
+#include "Win.h"
 
 #include <doodle/doodle.hpp>
 

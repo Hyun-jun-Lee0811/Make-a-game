@@ -16,6 +16,7 @@ Creation date: 2022/4/16 Spring
 #include "Game/Mode1.h"
 #include "Game/Mode2.h"
 #include "Game/Mode3.h"
+#include "Game/Win.h"
 #include "Game/Screens.h"
 
 int main(void)
@@ -31,11 +32,13 @@ int main(void)
 		Mode1 mode1;
 		Mode2 mode2;
 		Mode3 mode3;
+		Win win;
 		engine.GetGameStateManager().AddGameState(splash);
 		engine.GetGameStateManager().AddGameState(main_menu);
 		engine.GetGameStateManager().AddGameState(mode1);
 		engine.GetGameStateManager().AddGameState(mode2);
 		engine.GetGameStateManager().AddGameState(mode3);
+		engine.GetGameStateManager().AddGameState(win);
 
 		while (engine.HasGameEnded() == false)
 		{

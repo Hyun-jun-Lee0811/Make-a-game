@@ -27,7 +27,7 @@ public:
 	void Update(double dt) override;
 	void Unload() override;
 	void Draw() override;
-
+	int lives = 5;
 	std::string GetName() override { return "Mode3"; }
 private:
 	static constexpr double cloud_floor = 300.0f;
@@ -39,7 +39,6 @@ private:
 	CS230::Texture livesTexture;
 
 	Player* playerPtr;
-	int lives;
 
 	//Haven't decided to use it yet
 	CS230::Texture GameOverTexture;
