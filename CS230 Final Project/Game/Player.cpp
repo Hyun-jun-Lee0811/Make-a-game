@@ -2,6 +2,7 @@
 Copyright (C) 2021 DigiPen Institute of Technology.
 Reproduction or disclosure of this file or its contents without the prior
 written consent of DigiPen Institute of Technology is prohibited.
+Assignment: CS230 Final Project
 File Name: Player.h
 Project: CS230
 Author: Hyunjun Lee, Geumbi Yeo
@@ -50,11 +51,6 @@ void Player::Update(double dt)
 			Playertimer = 0;
 		}
 	}
-	//if (moveLeftKey.IsKeyDown() == true || moveRightKey.IsKeyDown() == true)
-	//{
-	//	Player* player = static_cast<Player*>(objectD);
-	//	player->ChangeState(&player->stateFalling);
-	//}
 }
 
 void Player::Draw(math::TransformMatrix displayMatrix)
@@ -178,7 +174,7 @@ void Player::ResolveCollision(GameObject* objectB)
 		}
 		break;
 	case GameObjectType::Trigger:
-		SetPosition(math::vec2{ 0,0});
+		SetPosition(math::vec2{ 0,0 });
 		objectB->ResolveCollision(this);
 	}
 }
