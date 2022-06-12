@@ -41,10 +41,12 @@ void Mode3::Load()
 	gameObjectManager = new CS230::GameObjectManager;
 	AddGSComponent(gameObjectManager);
 	gameObjectManager->Add(new Bird({ 920, 600 }, { 1020, 1130 }, playerPtr));
+	gameObjectManager->Add(new Bird({ 2450, 500 }, { 2550, 2660 }, playerPtr));
+	gameObjectManager->Add(new Bird({ 3500, 650 }, { 3600, 3710 }, playerPtr));
 	gameObjectManager->Add(playerPtr);
 
 	//안떨어질려면 이거 주석 풀어야함!
-	//gameObjectManager->Add(new Cloud({ 20, 100 }, 4));
+	gameObjectManager->Add(new Cloud({ 20, 100 }, 4));
 
 	gameObjectManager->Add(new Cloud({ 60, Mode3::cloud_floor - 110 }, 3)); //1
 	gameObjectManager->Add(new Cloud({ 180, Mode3::cloud_floor - 110 }, 2)); //2
@@ -70,7 +72,7 @@ void Mode3::Load()
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 
 	GameOverTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Game Over", 0xFFFFFFFF, true);
-	MainMenuTextue = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Press escape to MainMenu", 0xFFFFFFFF, true);
+	MainMenuTextue = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Press Escape to MainMenu", 0xFFFFFFFF, true);
 
 	std::string livesString = "Lives: " + std::to_string(lives);
 	livesTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font1)).DrawTextToTexture(livesString, 0xFFFFFFFF, true);
