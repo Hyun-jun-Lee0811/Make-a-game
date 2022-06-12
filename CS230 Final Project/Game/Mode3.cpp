@@ -35,17 +35,12 @@ void Mode3::Load()
 	back = GetGSComponent<Background>();
 	back->Add("Assets/Mode3_background.png", 1);
 
-
 	cameraPtr->SetExtent({ { 0,0 }, { back->Size() - Engine::GetWindow().GetSize() } });
-	playerPtr = new Player({ 200, Mode3::cloud_floor + 5000 });
+	playerPtr = new Player({ 200, Mode3::cloud_floor });
 	gameObjectManager = new CS230::GameObjectManager;
 	AddGSComponent(gameObjectManager);
-	//gameObjectManager->Add(new Bird({ 920, 600 }, { 1020, 1130 }, playerPtr));
-	//gameObjectManager->Add(new Bird({ 2450, 500 }, { 2550, 2660 }, playerPtr));
-	//gameObjectManager->Add(new Bird({ 3500, 650 }, { 3600, 3710 }, playerPtr));
 	gameObjectManager->Add(playerPtr);
 
-	//안떨어질려면 이거 주석 풀어야함!
 	gameObjectManager->Add(new Cloud({ 200, 250 }, 2));//1
 	gameObjectManager->Add(new Cloud({ 360, 270 }, 3));//2
 	gameObjectManager->Add(new Cloud({ 86, 270 }, 3));//3
@@ -86,12 +81,7 @@ void Mode3::Load()
 	gameObjectManager->Add(new LightningCloud({ 1400, 5250 }));//35
 	gameObjectManager->Add(new Cloud({ 760, 5360 }, 1));//27
 	gameObjectManager->Add(new Cloud({ 200, 5160 }, 1));//29
-
-
-	//gameObjectManager->Add(new Cloud({ 680, 4250 }, 2));//29
-
-
-	gameObjectManager->Add(new Exit({ {static_cast<int>(Mode3::cloud_floor + 100, 4500)}, {10, 1000} }));
+	gameObjectManager->Add(new Exit({ {300, static_cast<int>(Mode3::cloud_floor) + 4800}, {500, 500} }));
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 
 	GameOverTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Game Over", 0xFFFFFFFF, true);
@@ -122,7 +112,7 @@ void Mode3::Update(double dt)
 	if (Reload.IsKeyReleased() == true && playerPtr->IsDead() == false)
 	{
 		Engine::GetGameStateManager().ReloadState();
-}
+	}
 #endif
 	if (Reload.IsKeyReleased() == true && playerPtr->IsDead() == false)
 	{
