@@ -46,7 +46,7 @@ void Mode3::Load()
 	gameObjectManager->Add(playerPtr);
 
 	//안떨어질려면 이거 주석 풀어야함!
-	gameObjectManager->Add(new Cloud({ 20, 100 }, 4));
+	//gameObjectManager->Add(new Cloud({ 20, 100 }, 4));
 
 	gameObjectManager->Add(new Cloud({ 60, Mode3::cloud_floor - 110 }, 3)); //1
 	gameObjectManager->Add(new Cloud({ 180, Mode3::cloud_floor - 110 }, 2)); //2
