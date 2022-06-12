@@ -16,6 +16,7 @@ Creation date: 2022/4/16 spring
 namespace CS230
 {
 	class Camera;
+	class Camera2;
 }
 
 class Background : public CS230::Component
@@ -24,6 +25,7 @@ public:
 	~Background();
 	void Add(const std::filesystem::path& texturePath, int level);
 	void Draw(const CS230::Camera& camera);
+	void Draw2(const CS230::Camera2& camera2);
 	math::ivec2 Size();
 
 private:

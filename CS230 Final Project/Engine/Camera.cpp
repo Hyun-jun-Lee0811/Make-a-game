@@ -58,6 +58,15 @@ void CS230::Camera::Update(const math::vec2& followObjPos)
 	{
 		position.y = extent.Top();
 	}
+
+	//if (followObjPos.y < movableRange.Top() + position.y)
+	//{
+	//	position.y = followObjPos.y - movableRange.Top();
+	//}
+	//else if (followObjPos.y > movableRange.Bottom() + position.y)
+	//{
+	//	position.y = followObjPos.y - movableRange.Bottom();
+	//}
 }
 
 math::TranslateMatrix CS230::Camera::GetMatrix()

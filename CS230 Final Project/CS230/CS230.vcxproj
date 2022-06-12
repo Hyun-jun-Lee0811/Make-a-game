@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\Engine\Animation.cpp" />
     <ClCompile Include="..\Engine\Camera.cpp" />
+    <ClCompile Include="..\Engine\Camera2.cpp" />
     <ClCompile Include="..\Engine\Collision.cpp" />
     <ClCompile Include="..\Engine\Engine.cpp" />
     <ClCompile Include="..\Engine\GameObject.cpp" />
@@ -67,6 +68,7 @@
   <ItemGroup>
     <ClInclude Include="..\Engine\Animation.h" />
     <ClInclude Include="..\Engine\Camera.h" />
+    <ClInclude Include="..\Engine\Camera2.h" />
     <ClInclude Include="..\Engine\Collision.h" />
     <ClInclude Include="..\Engine\Component.h" />
     <ClInclude Include="..\Engine\ComponentManager.h" />

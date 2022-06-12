@@ -56,3 +56,18 @@ private:
 	};
 	static constexpr int NumParticles = 150;
 };
+
+class CrushEmitter : public CS230::ParticleEmitter
+{
+public:
+	CrushEmitter();
+private:
+	class Crush : public CS230::ParticleEmitter::Particle
+	{
+	public:
+		Crush(std::string spriteFile) : CS230::ParticleEmitter::Particle(spriteFile) {}
+		GameObjectType GetObjectType() { return GameObjectType::Particle; }
+		std::string GetObjectTypeName() { return "Crush Particle"; }
+	};
+	static constexpr int NumParticles = 20;
+};

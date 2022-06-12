@@ -10,6 +10,7 @@ Creation date: 2022/4/16 spring
 -----------------------------------------------------------------*/
 #include "Background.h"
 #include "../Engine/Camera.h"
+#include "../Engine/Camera2.h"
 #include "../Engine/Engine.h"
 
 
@@ -23,6 +24,14 @@ void Background::Draw(const CS230::Camera& camera)
 	for (int i = 0; i < backgrounds.size(); i++)
 	{
 		backgrounds[i].texturePtr->Draw(math::TranslateMatrix(-camera.GetPosition() / backgrounds[i].level));
+	}
+}
+
+void Background::Draw2(const CS230::Camera2& camera2)
+{
+	for (int i = 0; i < backgrounds.size(); i++)
+	{
+		backgrounds[i].texturePtr->Draw(math::TranslateMatrix(-camera2.GetPosition() / backgrounds[i].level));
 	}
 }
 

@@ -13,10 +13,10 @@ Creation date: 2022/6/9
 #include "Gravity.h"
 #include "Player_Anims.h"
 #include "../Engine/Collision.h"
-#include "../Engine/Camera.h"
 #include "GameParticles.h"
 #include "LightningCloud.h"
 #include "Score.h"
+#include "../Engine/Camera2.h"
 
 Player::Player(math::vec2 startPos) : GameObject(startPos), jumpKey(CS230::InputKey::Keyboard::Up),
 moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyboard::Right), isDead(false), drawPlayer(true), Playertimer(0), standingOnObject(nullptr)
@@ -35,9 +35,9 @@ void Player::Update(double dt)
 		SetPosition(math::vec2{ GetGOComponent<CS230::RectCollision>()->GetWorldCoorRect().Size().x / 2 ,GetPosition().y });
 		SetVelocity({ 0,GetVelocity().y });
 	}
-	else if (GetPosition().x + GetGOComponent<CS230::RectCollision>()->GetWorldCoorRect().Size().x / 2 >= Engine::GetGSComponent<CS230::Camera>()->GetPosition().x + Engine::GetWindow().GetSize().x)
+	else if (GetPosition().x + GetGOComponent<CS230::RectCollision>()->GetWorldCoorRect().Size().x / 2 >= Engine::GetGSComponent<CS230::Camera2>()->GetPosition().x + Engine::GetWindow().GetSize().x)
 	{
-		SetPosition({ Engine::GetGSComponent<CS230::Camera>()->GetPosition().x + Engine::GetWindow().GetSize().x - GetGOComponent<CS230::Sprite>()->GetFrameSize().x / 2,GetPosition().y });
+		SetPosition({ Engine::GetGSComponent<CS230::Camera2>()->GetPosition().x + Engine::GetWindow().GetSize().x - GetGOComponent<CS230::Sprite>()->GetFrameSize().x / 2,GetPosition().y });
 		SetVelocity({ 0,GetVelocity().y });
 	}
 
@@ -92,6 +92,13 @@ void Player::ResolveCollision(GameObject* objectB)
 				currState->TestForExit(this);
 				return;
 			}
+		}
+
+		if (GetPosition().y < objectB->GetPosition().y)
+		{
+			SetPosition({ GetPosition().x, collideRect.Bottom() - playerRect.Size().y / 2 -38});
+
+			return;
 		}
 
 		if (GetPosition().x > objectB->GetPosition().x)

@@ -139,6 +139,9 @@
     <ClCompile Include="..\Game\Win.cpp">
       <Filter>Game</Filter>
     </ClCompile>
+    <ClCompile Include="..\Engine\Camera2.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Engine\Logger.h">
@@ -317,6 +320,9 @@
     </ClInclude>
     <ClInclude Include="..\Game\Win.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Engine\Camera2.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

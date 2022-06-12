@@ -29,7 +29,7 @@ back(nullptr), gameObjectManager(nullptr), playerPtr(nullptr), lives(5) {}
 
 void Mode3::Load()
 {
-	CS230::Camera* cameraPtr = new CS230::Camera({ { 0.15 * Engine::GetWindow().GetSize().x, 0 }, {0.35 * Engine::GetWindow().GetSize().x, 0 } });
+	CS230::Camera2* cameraPtr = new CS230::Camera2({ { 0.15 * Engine::GetWindow().GetSize().x, 0 }, {0.35 * Engine::GetWindow().GetSize().x, 0 } });
 	AddGSComponent(cameraPtr);
 	AddGSComponent(new Background());
 	back = GetGSComponent<Background>();
@@ -37,38 +37,61 @@ void Mode3::Load()
 
 
 	cameraPtr->SetExtent({ { 0,0 }, { back->Size() - Engine::GetWindow().GetSize() } });
-	playerPtr = new Player({ 200, Mode3::cloud_floor });
+	playerPtr = new Player({ 200, Mode3::cloud_floor + 5000 });
 	gameObjectManager = new CS230::GameObjectManager;
 	AddGSComponent(gameObjectManager);
-	gameObjectManager->Add(new Bird({ 920, 600 }, { 1020, 1130 }, playerPtr));
-	gameObjectManager->Add(new Bird({ 2450, 500 }, { 2550, 2660 }, playerPtr));
-	gameObjectManager->Add(new Bird({ 3500, 650 }, { 3600, 3710 }, playerPtr));
+	//gameObjectManager->Add(new Bird({ 920, 600 }, { 1020, 1130 }, playerPtr));
+	//gameObjectManager->Add(new Bird({ 2450, 500 }, { 2550, 2660 }, playerPtr));
+	//gameObjectManager->Add(new Bird({ 3500, 650 }, { 3600, 3710 }, playerPtr));
 	gameObjectManager->Add(playerPtr);
 
 	//안떨어질려면 이거 주석 풀어야함!
-	//gameObjectManager->Add(new Cloud({ 20, 100 }, 4));
+	gameObjectManager->Add(new Cloud({ 200, 250 }, 2));//1
+	gameObjectManager->Add(new Cloud({ 360, 270 }, 3));//2
+	gameObjectManager->Add(new Cloud({ 86, 270 }, 3));//3
+	gameObjectManager->Add(new LightningCloud({ 680, 440 }));//4
+	gameObjectManager->Add(new Cloud({ 880, 680 }, 1));//5
+	gameObjectManager->Add(new Bird({ 540, 730 }, { 500, 820 }, playerPtr));//6
+	gameObjectManager->Add(new Cloud({ 180, 700 }, 1));//7
+	gameObjectManager->Add(new LightningCloud({ 50, 880 }));//8
+	gameObjectManager->Add(new Cloud({ 306, 1100 }, 3));//9
+	gameObjectManager->Add(new Cloud({ -70, 1050 }, 2));//10
+	gameObjectManager->Add(new Cloud({ 506, 1200 }, 3));//11
+	gameObjectManager->Add(new Cloud({ 706, 1300 }, 3));//12
+	gameObjectManager->Add(new Cloud({ 906, 1400 }, 3));//13
+	gameObjectManager->Add(new Cloud({ 1106, 1580 }, 1));//14
+	gameObjectManager->Add(new LightningCloud({ 1300, 1680 }));//15
+	gameObjectManager->Add(new LightningCloud({ 900, 1880 }));//16
+	gameObjectManager->Add(new Cloud({ 580, 2000 }, 2));//17
+	gameObjectManager->Add(new Cloud({ 80, 2200 }, 1));//18
+	gameObjectManager->Add(new Bird({ 60, 2300 }, { 60, 200 }, playerPtr));//19
+	gameObjectManager->Add(new LightningCloud({ 600, 2400 }));//20
+	gameObjectManager->Add(new Cloud({ 1100, 2650 }, 1));//21
+	gameObjectManager->Add(new LightningCloud({ 1300, 2750 }));//22
+	gameObjectManager->Add(new Cloud({ 900, 2900 }, 2));//23
+	gameObjectManager->Add(new Cloud({ 400, 3000 }, 1));//24
+	gameObjectManager->Add(new Cloud({ 0, 3200 }, 1));//25
+	gameObjectManager->Add(new Cloud({ 400, 3400 }, 1));//26
+	gameObjectManager->Add(new Cloud({ 800, 3400 }, 1));//27
+	gameObjectManager->Add(new Cloud({ 1340, 3500 }, 3));//28
+	gameObjectManager->Add(new Cloud({ 1000, 3650 }, 2));//29
+	gameObjectManager->Add(new LightningCloud({ 680, 3800 }));//30
+	gameObjectManager->Add(new LightningCloud({ 340, 3970 }));//31
+	gameObjectManager->Add(new Cloud({ 40, 4100 }, 3));//32
+	gameObjectManager->Add(new LightningCloud({ -130, 4370 }));//31
+	gameObjectManager->Add(new Cloud({ 270, 4550 }, 2));//32
+	gameObjectManager->Add(new Cloud({ 600, 4650 }, 3));//33
+	gameObjectManager->Add(new Cloud({ 900, 4800 }, 3));//34
+	gameObjectManager->Add(new LightningCloud({ 1200, 5050 }));//35
+	gameObjectManager->Add(new LightningCloud({ 1400, 5250 }));//35
+	gameObjectManager->Add(new Cloud({ 760, 5360 }, 1));//27
+	gameObjectManager->Add(new Cloud({ 200, 5160 }, 1));//29
 
-	gameObjectManager->Add(new Cloud({ 60, Mode3::cloud_floor - 110 }, 3)); //1
-	gameObjectManager->Add(new Cloud({ 180, Mode3::cloud_floor - 110 }, 2)); //2
-	gameObjectManager->Add(new Cloud({ 340, Mode3::cloud_floor - 110 }, 3)); //3
-	gameObjectManager->Add(new Cloud({ 580, Mode3::cloud_floor - 45 }, 3)); //4
-	gameObjectManager->Add(new Cloud({ 820, 500 }, 1)); //5
-	gameObjectManager->Add(new Cloud({ 1500, Mode3::cloud_floor - 110 }, 3)); //6
-	gameObjectManager->Add(new Cloud({ 1750, Mode3::cloud_floor - 110 }, 3)); //7
-	gameObjectManager->Add(new LightningCloud({ 2000,Mode3::cloud_floor - 110 }));//8
-	gameObjectManager->Add(new Cloud({ 2350, Mode3::cloud_floor + 100 }, 1)); //9
-	gameObjectManager->Add(new LightningCloud({ 2800,Mode3::cloud_floor - 110 }));//10
-	gameObjectManager->Add(new LightningCloud({ 3100,Mode3::cloud_floor + 90 }));//11
-	gameObjectManager->Add(new Cloud({ 3400, 550 }, 1)); //12
-	gameObjectManager->Add(new Cloud({ 4000, Mode3::cloud_floor - 10 }, 2)); //13
-	gameObjectManager->Add(new Cloud({ 4150, Mode3::cloud_floor + 201 }, 2)); //14
-	gameObjectManager->Add(new LightningCloud({ 4400,Mode3::cloud_floor + 270 }));//15
-	gameObjectManager->Add(new LightningCloud({ 4900,Mode3::cloud_floor + 250 }));//16
-	gameObjectManager->Add(new Cloud({ 4650, Mode3::cloud_floor - 15 }, 2)); //17
-	gameObjectManager->Add(new Cloud({ 5400, 300 }, 1)); //5
-	gameObjectManager->Add(new Cloud({ 5200, Mode3::cloud_floor - 140 }, 3)); //2
 
-	gameObjectManager->Add(new Exit({ {5550, static_cast<int>(Mode3::cloud_floor)}, {5760, 683} }));
+	//gameObjectManager->Add(new Cloud({ 680, 4250 }, 2));//29
+
+
+	gameObjectManager->Add(new Exit({ {static_cast<int>(Mode3::cloud_floor + 100, 4500)}, {10, 1000} }));
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 
 	GameOverTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font2)).DrawTextToTexture("Game Over", 0xFFFFFFFF, true);
@@ -88,7 +111,7 @@ void Mode3::Load()
 
 void Mode3::Update(double dt)
 {
-	GetGSComponent<CS230::Camera>()->Update(playerPtr->GetPosition());
+	GetGSComponent<CS230::Camera2>()->Update(playerPtr->GetPosition());
 #ifdef _DEBUG
 	if (mainmenu.IsKeyReleased() == true && playerPtr->IsDead() == false)
 	{
@@ -99,7 +122,7 @@ void Mode3::Update(double dt)
 	if (Reload.IsKeyReleased() == true && playerPtr->IsDead() == false)
 	{
 		Engine::GetGameStateManager().ReloadState();
-	}
+}
 #endif
 	if (Reload.IsKeyReleased() == true && playerPtr->IsDead() == false)
 	{
@@ -154,8 +177,8 @@ void Mode3::Unload()
 void Mode3::Draw()
 {
 	Engine::GetWindow().Clear(0x000000FF);
-	CS230::Camera* cameraPtr = GetGSComponent<CS230::Camera>();
-	GetGSComponent<Background>()->Draw(*cameraPtr);
+	CS230::Camera2* cameraPtr = GetGSComponent<CS230::Camera2>();
+	GetGSComponent<Background>()->Draw2(*cameraPtr);
 	math::TransformMatrix cameraMatrix = cameraPtr->GetMatrix();
 	gameObjectManager->DrawAll(cameraMatrix);
 	math::ivec2 winSize = Engine::GetWindow().GetSize();

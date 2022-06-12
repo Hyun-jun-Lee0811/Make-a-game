@@ -14,7 +14,7 @@ Creation date: 2022/6/9
 #include "ship.h"
 #include "../Engine/GameObjectManager.h"
 #include "Meteor.h"
-#include "..\Engine\Camera.h"
+#include "../Engine/Camera2.h"
 
 #include "Cloud.h"
 #include "Player.h"
@@ -31,7 +31,7 @@ public:
 	int lives = 5;
 	std::string GetName() override { return "Mode3"; }
 private:
-	static constexpr double cloud_floor = 300.0f;
+	static constexpr double cloud_floor = 355.0f;
 	Background* back;
 
 	CS230::InputKey mainmenu;

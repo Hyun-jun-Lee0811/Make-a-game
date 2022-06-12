@@ -35,3 +35,11 @@ MeteorBitEmitter::MeteorBitEmitter() : ParticleEmitter(1.5)
 		AddParticle(new MeteorBit("Assets/MeteorBit.spt"));
 	}
 }
+
+CrushEmitter::CrushEmitter() : ParticleEmitter(1.0)
+{
+	for (int i = 0; i < NumParticles; i++)
+	{
+		AddParticle(new Crush("Assets/crush.spt"));
+	}
+}
