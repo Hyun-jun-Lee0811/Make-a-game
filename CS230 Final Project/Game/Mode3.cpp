@@ -46,7 +46,7 @@ void Mode3::Load()
 	gameObjectManager->Add(new Cloud({ 86, 270 }, 3));//3
 	gameObjectManager->Add(new LightningCloud({ 680, 440 }));//4
 	gameObjectManager->Add(new Cloud({ 880, 680 }, 1));//5
-	gameObjectManager->Add(new Bird({ 540, 730 }, { 500, 820 }, playerPtr));//6
+	gameObjectManager->Add(new Bird({ 240, 780 }, { 200, 520 }, playerPtr));//6
 	gameObjectManager->Add(new Cloud({ 180, 700 }, 1));//7
 	gameObjectManager->Add(new LightningCloud({ 50, 880 }));//8
 	gameObjectManager->Add(new Cloud({ 306, 1100 }, 3));//9

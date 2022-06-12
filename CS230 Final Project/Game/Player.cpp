@@ -96,11 +96,10 @@ void Player::ResolveCollision(GameObject* objectB)
 
 		if (GetPosition().y < objectB->GetPosition().y)
 		{
-			SetPosition({ GetPosition().x, collideRect.Bottom() - playerRect.Size().y / 2 -38});
+			SetPosition({ GetPosition().x, collideRect.Bottom() - playerRect.Size().y / 2 - 38 });
 
 			return;
 		}
-
 		if (GetPosition().x > objectB->GetPosition().x)
 		{
 			SetPosition(math::vec2{ collideRect.Right() + playerRect.Size().x / 2,GetPosition().y });
@@ -113,6 +112,7 @@ void Player::ResolveCollision(GameObject* objectB)
 		}
 		break;
 	case GameObjectType::Bird:
+
 		if (currState == &stateSkidding)
 		{
 			if (GetVelocity().x > collideRect.Left() || GetVelocity().x < collideRect.Right())
@@ -127,14 +127,14 @@ void Player::ResolveCollision(GameObject* objectB)
 			{
 				SetVelocity({ GetVelocity().x, jumpVelocity / 2 });
 				objectB->ResolveCollision(this);
-				if (GetVelocity().x < 0)
+				if (GetVelocity().y >= objectB->GetPosition().y)
 				{
-					Engine::GetGameStateManager().GetGSComponent<SmokeEmitter>()->Emit(1, math::vec2{ (collideRect.Right() + playerRect.Left()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
+					Engine::GetGameStateManager().GetGSComponent<CrushEmitter>()->Emit(1, math::vec2{ (collideRect.Right() + playerRect.Left()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
 					, { 0, 0 }, { 0,0 }, 0);
 				}
 				else
 				{
-					Engine::GetGameStateManager().GetGSComponent<SmokeEmitter>()->Emit(1, math::vec2{ (collideRect.Left() + playerRect.Right()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
+					Engine::GetGameStateManager().GetGSComponent<CrushEmitter>()->Emit(1, math::vec2{ (collideRect.Left() + playerRect.Right()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
 					, { 0, 0 }, { 0,0 }, 0);
 				}
 				return;
@@ -161,6 +161,7 @@ void Player::ResolveCollision(GameObject* objectB)
 		{
 			if (collideRect.Bottom() < GetPosition().y)
 			{
+				Engine::GetGSComponent<Score>()->AddScore(3);
 				SetVelocity({ GetVelocity().x, jumpVelocity + 100 });
 				return;
 			}
@@ -225,6 +226,7 @@ void Player::UpdateXVelocity(double dt)
 void Player::State_Idle::Enter(GameObject* object)
 {
 	Player* player = static_cast<Player*>(object);
+
 	player->GetGOComponent<CS230::Sprite>()->PlayAnimation(static_cast<int>(Player_Anims::Player_Idle_Anim));
 	if (player->standingOnObject == nullptr)
 	{
@@ -237,6 +239,7 @@ void Player::State_Idle::Update(GameObject*, double) {}
 void Player::State_Idle::TestForExit(GameObject* object)
 {
 	Player* player = static_cast<Player*>(object);
+
 	if (player->moveLeftKey.IsKeyDown() == true)
 	{
 		player->ChangeState(&player->stateRunning);
@@ -279,6 +282,7 @@ void Player::State_Running::Update(GameObject* object, double dt)
 void Player::State_Running::TestForExit(GameObject* object)
 {
 	Player* player = static_cast<Player*>(object);
+
 	if (player->moveLeftKey.IsKeyDown() == true && player->GetVelocity().x > 0)
 	{
 		player->ChangeState(&player->stateSkidding);
@@ -317,6 +321,7 @@ void Player::State_Skidding::Update(GameObject* object, double dt)
 void Player::State_Skidding::TestForExit(GameObject* object)
 {
 	Player* player = static_cast<Player*>(object);
+
 	if (player->jumpKey.IsKeyDown() == true)
 	{
 		player->ChangeState(&player->stateJumping);
