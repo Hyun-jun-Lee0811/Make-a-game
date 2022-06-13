@@ -25,7 +25,7 @@ Bird::Bird(math::vec2 pos, std::vector<double> patrolNodes, Player* playerPtr) :
 
 
 
-void Bird::Bird_State_Patrol::Enter(GameObject* object)
+void Bird::Fly::Enter(GameObject* object)
 {
 	Bird* bird = static_cast<Bird*>(object);
 	bird->GetGOComponent<CS230::Sprite>()->PlayAnimation(static_cast<int>(Bird_Anim::Fly_Anim));
@@ -41,7 +41,7 @@ void Bird::Bird_State_Patrol::Enter(GameObject* object)
 	}
 }
 
-void Bird::Bird_State_Patrol::Update(GameObject* object, double)
+void Bird::Fly::Update(GameObject* object, double)
 {
 	Bird* bird = static_cast<Bird*>(object);
 	if (bird->GetPosition().x >= bird->patrolNodes[bird->currPatrolNode] && bird->GetVelocity().x >= 0 || bird->GetPosition().x <= bird->patrolNodes[bird->currPatrolNode] && bird->GetVelocity().x <= 0)
@@ -58,7 +58,7 @@ void Bird::Bird_State_Patrol::Update(GameObject* object, double)
 	}
 }
 
-void Bird::Bird_State_Patrol::TestForExit(GameObject* object)
+void Bird::Fly::TestForExit(GameObject* object)
 {
 	Bird* bird = static_cast<Bird*>(object);
 	if (bird->GetPosition().y == bird->playerPtr->GetPosition().y)

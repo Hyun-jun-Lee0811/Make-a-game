@@ -27,7 +27,7 @@ public:
 	}
 
 private:
-	class Bird_State_Patrol : public State
+	class Fly : public State
 	{
 	public:
 		void Enter(GameObject* object) override;
@@ -36,7 +36,7 @@ private:
 		//void TestForExit(GameObject* object) override;
 		std::string GetName() override { return "bounce"; }
 	};
-	Bird_State_Patrol statePatrol;
+	Fly statePatrol;
 	Player* playerPtr;
 
 	std::vector<double> patrolNodes;
