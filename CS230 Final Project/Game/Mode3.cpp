@@ -36,7 +36,7 @@ void Mode3::Load()
 	back->Add("Assets/Mode3_background.png", 1);
 
 	cameraPtr->SetExtent({ { 0,0 }, { back->Size() - Engine::GetWindow().GetSize() } });
-	playerPtr = new Player({ 200 + 200, Mode3::cloud_floor + 400});
+	playerPtr = new Player({ 200 , Mode3::cloud_floor });
 	gameObjectManager = new CS230::GameObjectManager;
 	AddGSComponent(gameObjectManager);
 	gameObjectManager->Add(playerPtr);
