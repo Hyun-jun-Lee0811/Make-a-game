@@ -1,11 +1,11 @@
 Assets/Bird.png
 HotSpot 35 0
 FrameSize 70 97
-Frame 10 0
-Frame 50 0
-Frame 120 0
-Frame 190 0
-Frame 250 0
+Frame 0 0
+Frame 70 0
+Frame 140 0
+Frame 210 0
+Frame 270 0
 CollisionRect -26 0 26 70 
 Anim Assets/birdFly.anm
 Anim Assets/deadBird.anm
