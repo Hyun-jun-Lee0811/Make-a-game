@@ -8,5 +8,3 @@ Frame 190 0
 Frame 250 0
 CollisionRect -26 0 26 70 
 Anim Assets/birdFly.anm
-Anim Assets/deadBird.anm
-Anim Assets/birdAttack.anm

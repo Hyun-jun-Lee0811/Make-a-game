@@ -25,6 +25,7 @@ moveLeftKey(CS230::InputKey::Keyboard::Left), moveRightKey(CS230::InputKey::Keyb
 	currState = &stateIdle;
 	currState->Enter(this);
 	standingOnObject = this;
+	AddGOComponent(new Gravity(1850));
 }
 
 void Player::Update(double dt)
@@ -87,6 +88,8 @@ void Player::ResolveCollision(GameObject* objectB)
 		{
 			if (playerRect.Top() > collideRect.Top() && objectB->DoesCollideWith(GetPosition()))
 			{
+				Engine::GetGameStateManager().GetGSComponent<CrushEmitter>()->Emit(1, math::vec2{ (collideRect.Right() + playerRect.Left()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
+				, { 0, 0 }, { 0,0 }, 0);
 				SetPosition({ GetPosition().x, collideRect.Top() });
 				standingOnObject = objectB;
 				currState->TestForExit(this);
@@ -113,30 +116,23 @@ void Player::ResolveCollision(GameObject* objectB)
 		break;
 	case GameObjectType::Bird:
 
-		if (currState == &stateSkidding)
+		if (currState == &stateFalling)
 		{
-			if (GetVelocity().x > collideRect.Left() || GetVelocity().x < collideRect.Right())
+			if (playerRect.Top() > collideRect.Top() && objectB->DoesCollideWith(GetPosition()))
 			{
-				objectB->ResolveCollision(this);
+				Engine::GetGSComponent<Score>()->AddScore(10);
+				SetPosition({ GetPosition().x, collideRect.Top() });
+				standingOnObject = objectB;
+				currState->TestForExit(this);
 				return;
 			}
 		}
 		if (currState == &stateFalling)
 		{
-			if (GetPosition().y > collideRect.Bottom())
+			if (collideRect.Bottom() < GetPosition().y)
 			{
-				SetVelocity({ GetVelocity().x, jumpVelocity / 2 });
-				objectB->ResolveCollision(this);
-				if (GetVelocity().y >= objectB->GetPosition().y)
-				{
-					Engine::GetGameStateManager().GetGSComponent<CrushEmitter>()->Emit(1, math::vec2{ (collideRect.Right() + playerRect.Left()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
-					, { 0, 0 }, { 0,0 }, 0);
-				}
-				else
-				{
-					Engine::GetGameStateManager().GetGSComponent<CrushEmitter>()->Emit(1, math::vec2{ (collideRect.Left() + playerRect.Right()) / 2, (collideRect.Top() + playerRect.Bottom()) / 2 }
-					, { 0, 0 }, { 0,0 }, 0);
-				}
+				Engine::GetGSComponent<Score>()->AddScore(3);
+				SetVelocity({ GetVelocity().x, jumpVelocity + 100 });
 				return;
 			}
 		}

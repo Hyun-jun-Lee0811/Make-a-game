@@ -13,6 +13,4 @@ Creation date: 2022/6/9
 enum class Bird_Anim
 {
 	Fly_Anim,
-	Dead_Anim,
-	Attack_Anim,
 };

@@ -36,7 +36,7 @@ void Mode3::Load()
 	back->Add("Assets/Mode3_background.png", 1);
 
 	cameraPtr->SetExtent({ { 0,0 }, { back->Size() - Engine::GetWindow().GetSize() } });
-	playerPtr = new Player({ 200, Mode3::cloud_floor });
+	playerPtr = new Player({ 200, Mode3::cloud_floor + 5000});
 	gameObjectManager = new CS230::GameObjectManager;
 	AddGSComponent(gameObjectManager);
 	gameObjectManager->Add(playerPtr);
@@ -46,7 +46,7 @@ void Mode3::Load()
 	gameObjectManager->Add(new Cloud({ 86, 270 }, 3));//3
 	gameObjectManager->Add(new LightningCloud({ 680, 440 }));//4
 	gameObjectManager->Add(new Cloud({ 880, 680 }, 1));//5
-	gameObjectManager->Add(new Bird({ 240, 780 }, { 200, 520 }, playerPtr));//6
+	gameObjectManager->Add(new Bird({ 100, 780 }, { 200, 1200 }, playerPtr));//6
 	gameObjectManager->Add(new Cloud({ 180, 700 }, 1));//7
 	gameObjectManager->Add(new LightningCloud({ 50, 880 }));//8
 	gameObjectManager->Add(new Cloud({ 306, 1100 }, 3));//9
@@ -59,7 +59,7 @@ void Mode3::Load()
 	gameObjectManager->Add(new LightningCloud({ 900, 1880 }));//16
 	gameObjectManager->Add(new Cloud({ 580, 2000 }, 2));//17
 	gameObjectManager->Add(new Cloud({ 80, 2200 }, 1));//18
-	gameObjectManager->Add(new Bird({ 60, 2300 }, { 60, 200 }, playerPtr));//19
+	gameObjectManager->Add(new Bird({ 60, 2300 }, { 60, 1200 }, playerPtr));//19
 	gameObjectManager->Add(new LightningCloud({ 600, 2400 }));//20
 	gameObjectManager->Add(new Cloud({ 1100, 2650 }, 1));//21
 	gameObjectManager->Add(new LightningCloud({ 1300, 2750 }));//22
@@ -81,6 +81,11 @@ void Mode3::Load()
 	gameObjectManager->Add(new LightningCloud({ 1400, 5250 }));//35
 	gameObjectManager->Add(new Cloud({ 760, 5360 }, 1));//27
 	gameObjectManager->Add(new Cloud({ 200, 5160 }, 1));//29
+
+	gameObjectManager->Add(new Bird({ 100, 1780 }, { 200, 1200 }, playerPtr));//6
+	gameObjectManager->Add(new Bird({ 100, 2780 }, { 200, 1200 }, playerPtr));//6
+	gameObjectManager->Add(new Bird({ 100, 3780 }, { 200, 1200 }, playerPtr));//6
+	gameObjectManager->Add(new Bird({ 100, 4780 }, { 200, 1200 }, playerPtr));//6
 	gameObjectManager->Add(new Exit({ {300, static_cast<int>(Mode3::cloud_floor) + 4800}, {500, 500} }));
 	//gameObjectManager->Add(new EnemyShip(playerPtr));
 
@@ -91,7 +96,7 @@ void Mode3::Load()
 	livesTexture = Engine::GetSpriteFont(static_cast<int>(Fonts::Font1)).DrawTextToTexture(livesString, 0xFFFFFFFF, true);
 
 	AddGSComponent(new Score(0, Fonts::Font1));
-	AddGSComponent(new Timer(40));
+	AddGSComponent(new Timer(120));
 	AddGSComponent(new Gravity(1875));
 	AddGSComponent(new SmokeEmitter());
 #ifdef _DEBUG
