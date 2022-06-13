@@ -46,7 +46,7 @@ void Mode3::Load()
 	gameObjectManager->Add(new Cloud({ 86, 270 }, 3));//3
 	gameObjectManager->Add(new LightningCloud({ 680, 440 }));//4
 	gameObjectManager->Add(new Cloud({ 880, 680 }, 1));//5
-	gameObjectManager->Add(new Bird({ 100, 780 }, { 200, 1200 }, playerPtr));//6
+	gameObjectManager->Add(new Bird({ 240, 780 }, { 200, 520 }, playerPtr));//6
 	gameObjectManager->Add(new Cloud({ 180, 700 }, 1));//7
 	gameObjectManager->Add(new LightningCloud({ 50, 880 }));//8
 	gameObjectManager->Add(new Cloud({ 306, 1100 }, 3));//9
@@ -59,7 +59,7 @@ void Mode3::Load()
 	gameObjectManager->Add(new LightningCloud({ 900, 1880 }));//16
 	gameObjectManager->Add(new Cloud({ 580, 2000 }, 2));//17
 	gameObjectManager->Add(new Cloud({ 80, 2200 }, 1));//18
-	gameObjectManager->Add(new Bird({ 60, 2300 }, { 60, 1200 }, playerPtr));//19
+	gameObjectManager->Add(new Bird({ 60, 2300 }, { 60, 200 }, playerPtr));//19
 	gameObjectManager->Add(new LightningCloud({ 600, 2400 }));//20
 	gameObjectManager->Add(new Cloud({ 1100, 2650 }, 1));//21
 	gameObjectManager->Add(new LightningCloud({ 1300, 2750 }));//22
@@ -98,7 +98,7 @@ void Mode3::Load()
 	AddGSComponent(new Score(0, Fonts::Font1));
 	AddGSComponent(new Timer(120));
 	AddGSComponent(new Gravity(1875));
-	AddGSComponent(new SmokeEmitter());
+	AddGSComponent(new CrushEmitter());
 #ifdef _DEBUG
 	AddGSComponent(new ShowCollision(CS230::InputKey::Keyboard::Tilde));
 #endif
