@@ -100,7 +100,6 @@ void Player::ResolveCollision(GameObject* objectB)
 		if (GetPosition().y < objectB->GetPosition().y)
 		{
 			SetPosition({ GetPosition().x, collideRect.Bottom() - playerRect.Size().y / 2 - 38 });
-
 			return;
 		}
 		if (GetPosition().x > objectB->GetPosition().x)
@@ -120,22 +119,23 @@ void Player::ResolveCollision(GameObject* objectB)
 		{
 			if (playerRect.Top() > collideRect.Top() && objectB->DoesCollideWith(GetPosition()))
 			{
+				objectB->ResolveCollision(this);
 				Engine::GetGSComponent<Score>()->AddScore(10);
-				SetPosition({ GetPosition().x, collideRect.Top() });
+				SetPosition({ GetPosition().x, jumpVelocity });
 				standingOnObject = objectB;
 				currState->TestForExit(this);
 				return;
 			}
 		}
-		if (currState == &stateFalling)
-		{
-			if (collideRect.Bottom() < GetPosition().y)
-			{
-				Engine::GetGSComponent<Score>()->AddScore(3);
-				SetVelocity({ GetVelocity().x, jumpVelocity + 100 });
-				return;
-			}
-		}
+		//if (currState == &stateFalling)
+		//{
+		//	if (collideRect.Bottom() < GetPosition().y)
+		//	{
+		//		Engine::GetGSComponent<Score>()->AddScore(3);
+		//		SetVelocity({ GetVelocity().x, jumpVelocity + 100 });
+		//		return;
+		//	}
+		//}
 		if (GetPosition().x > objectB->GetPosition().x)
 		{
 			SetVelocity(math::vec2{ maxXVelocity / 2 ,jumpVelocity / 2 });
