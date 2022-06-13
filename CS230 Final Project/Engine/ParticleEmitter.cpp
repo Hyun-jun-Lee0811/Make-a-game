@@ -75,10 +75,10 @@ void CS230::ParticleEmitter::Emit(int number, math::vec2 position, math::vec2 em
 	math::vec2 V_random = emitterVelocity + math::RotateMatrix(A_random) * emitVector * (((rand() % 1024) / 2048.0) + 0.5);
 	if (this != nullptr)
 	{
-	particleMemoryPool[particleIndexToUse++]->Revive(position, V_random, lifetime);
-	if (particleIndexToUse >= particleMemoryPool.size())
-	{
-		particleIndexToUse = 0;
-	}
+		particleMemoryPool[particleIndexToUse++]->Revive(position, V_random, lifetime);
+		if (particleIndexToUse >= particleMemoryPool.size())
+		{
+			particleIndexToUse = 0;
+		}
 	}
 }

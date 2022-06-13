@@ -127,15 +127,6 @@ void Player::ResolveCollision(GameObject* objectB)
 				return;
 			}
 		}
-		//if (currState == &stateFalling)
-		//{
-		//	if (collideRect.Bottom() < GetPosition().y)
-		//	{
-		//		Engine::GetGSComponent<Score>()->AddScore(3);
-		//		SetVelocity({ GetVelocity().x, jumpVelocity + 100 });
-		//		return;
-		//	}
-		//}
 		if (GetPosition().x > objectB->GetPosition().x)
 		{
 			SetVelocity(math::vec2{ maxXVelocity / 2 ,jumpVelocity / 2 });
