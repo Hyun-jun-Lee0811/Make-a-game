@@ -41,7 +41,7 @@ This project is a small multi-game suite built on top of a custom, component-bas
 | Mode 2 | **Space Shooter** | Top-down asteroids-style shooter | Course-provided functional spec | Individual assignment — this build uses **Hyunjun Lee's** implementation |
 | Mode 3 | **Watch Your Step** | Vertical platformer / "climber" | Original design, fully self-created | Built **together** by Hyunjun Lee & Geumbi Yeo |
 
-> 📝 Mode 1 (Side Scroller) and Mode 2 (Space Shooter) were originally **individual assignments** — each of us implemented our own separate version from the same English-language functional specification provided by the course instructor. This repository uses **Hyunjun Lee's** individually-built versions of Mode 1 and Mode 2 as the foundation. **Mode 3 (Watch Your Step)** had no provided spec and was conceived, designed, and implemented **together** by both of us as a team.
+>  Mode 1 (Side Scroller) and Mode 2 (Space Shooter) were originally **individual assignments** — each of us implemented our own separate version from the same English-language functional specification provided by the course instructor. This repository uses **Hyunjun Lee's** individually-built versions of Mode 1 and Mode 2 as the foundation. **Mode 3 (Watch Your Step)** had no provided spec and was conceived, designed, and implemented **together** by both of us as a team.
 
 ---
 
